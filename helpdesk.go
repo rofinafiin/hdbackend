@@ -3,6 +3,8 @@ package HelpdeskData
 import (
 	"context"
 	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"os"
 	"time"
 
@@ -10,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var MongoString string = os.Getenv("MONGOSTRING")
+var MongoString string = os.Getenv("MONGOSTGS")
 
 func MongoConnect(dbname string) (db *mongo.Database) {
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(MongoString))
@@ -37,7 +39,7 @@ func InsertPresensi(long float64, lat float64, lokasi string, phonenumber string
 	presensi.Datetime = primitive.NewDateTimeFromTime(time.Now().UTC())
 	presensi.Checkin = checkin
 	presensi.Biodata = biodata
-	return helper.InsertOneDoc("adorable", "presensi", presensi)
+	return InsertOneDoc("adorable", "presensi", presensi)
 }
 
 func GetKaryawanFromPhoneNumber(phone_number string) (staf Presensi) {
