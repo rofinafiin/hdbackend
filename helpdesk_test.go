@@ -5,24 +5,33 @@ import (
 	"testing"
 )
 
-//func TestInsertPresensi(t *testing.T) {
-//	long := 98.345345
-//	lat := 123.561651
-//	lokasi := "rumah"
-//	phonenumber := "6811110023231"
-//	checkin := "masuk"
-//	biodata := Karyawan{
-//		Nama:         "ujang",
-//		Phone_number: "6284564562",
-//		Jabatan:      "tukang sapu",
+//func TestInsertData(t *testing.T) {
+//	sistem := "ITeung"
+//	status := "Aktif"
+//	bio := User{
+//		Nama:      "Nafiis",
+//		Email:     "rofinafiisr@gmail.com",
+//		Handphone: "6285156007137",
 //	}
-//	hasil := InsertPresensi(long, lat, lokasi, phonenumber, checkin, biodata)
+//	hasil := InsertDataComp(sistem, status, bio)
 //	fmt.Println(hasil)
 //
 //}
+//
+//func TestGetKaryawanFromStatus(t *testing.T) {
+//	stats := "Aktif"
+//	biodata := GetDataCompFromStatus(stats)
+//	fmt.Println(biodata)
+//}
 
-func TestGetKaryawanFromPhoneNumber(t *testing.T) {
-	phonenumber := "6811110023231"
-	biodata := GetKaryawanFromPhoneNumber(phonenumber)
-	fmt.Println(biodata)
+//func TestGetDataUserFromPhone(t *testing.T) {
+//	phone := "6285156007137"
+//	biodata := GetDataUserFromPhone(phone)
+//	fmt.Println(biodata)
+//}
+
+func TestGetDataAllbyStats(t *testing.T) {
+	stats := "Aktif"
+	data := GetDataAllbyStats(stats)
+	fmt.Println(data)
 }

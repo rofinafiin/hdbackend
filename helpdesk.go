@@ -4,15 +4,12 @@ import (
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"os"
-	"time"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"os"
 )
 
-var MongoString string = os.Getenv("MONGOSTGS")
+var MongoString string = os.Getenv("MONGOSTRING")
 
 func MongoConnect(dbname string) (db *mongo.Database) {
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(MongoString))
@@ -30,24 +27,41 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 	return insertResult.InsertedID
 }
 
-func InsertPresensi(long float64, lat float64, lokasi string, phonenumber string, checkin string, biodata Karyawan) (InsertedID interface{}) {
-	var presensi Presensi
-	presensi.Latitude = long
-	presensi.Longitude = lat
-	presensi.Location = lokasi
-	presensi.Phone_number = phonenumber
-	presensi.Datetime = primitive.NewDateTimeFromTime(time.Now().UTC())
-	presensi.Checkin = checkin
-	presensi.Biodata = biodata
-	return InsertOneDoc("adorable", "presensi", presensi)
+func InsertDataComp(sistem string, status string, bio User) (InsertedID interface{}) {
+	var datacomp DataComplain
+	datacomp.Sistemcomp = sistem
+	datacomp.Status = status
+	datacomp.Biodata = bio
+	return InsertOneDoc("HelpdeskData", "data_complain", datacomp)
 }
 
-func GetKaryawanFromPhoneNumber(phone_number string) (staf Presensi) {
-	karyawan := MongoConnect("adorable").Collection("presensi")
-	filter := bson.M{"phone_number": phone_number}
-	err := karyawan.FindOne(context.TODO(), filter).Decode(&staf)
+func GetDataCompFromStatus(status string) (data DataComplain) {
+	user := MongoConnect("HelpdeskData").Collection("data_complain")
+	filter := bson.M{"status": status}
+	err := user.FindOne(context.TODO(), filter).Decode(&data)
 	if err != nil {
-		fmt.Printf("getKaryawanFromPhoneNumber: %v\n", err)
+		fmt.Printf("getDataCompFromPhoneNumber: %v\n", err)
 	}
-	return staf
+	return data
 }
+
+func GetDataAllbyStats(stats string) (data *DataComplain) {
+	user := MongoConnect("HelpdeskData").Collection("data_complain")
+	filter := bson.M{"status": stats}
+	//findOptions := options.Find()
+	err, _ := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Printf("GetALLData : %v\n", err)
+	}
+	return data
+}
+
+//func GetDataUserFromPhone(phone string) (data DataComplain) {
+//	user := MongoConnect("HelpdeskData").Collection("data_complain")
+//	filter := bson.M{"biodata": bson.M{"handphone": phone}}
+//	err := user.FindOne(context.TODO(), filter).Decode(&data)
+//	if err != nil {
+//		fmt.Printf("getDataCompFromPhoneNumber: %v\n", err)
+//	}
+//	return data
+//}
