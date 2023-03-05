@@ -35,6 +35,16 @@ func InsertDataComp(sistem string, status string, bio User) (InsertedID interfac
 	return InsertOneDoc("HelpdeskData", "data_complain", datacomp)
 }
 
+func InsertDataHelper(helper string, username string, nama string, email string, handphone string) (InsertedID interface{}) {
+	help := new(Helper)
+	help.Helpid = helper
+	help.Username = username
+	help.Nama = nama
+	help.Email = email
+	help.Handphone = handphone
+	return InsertOneDoc("HelpdeskData", "helperdata", help)
+}
+
 func GetDataCompFromStatus(status string) (data DataComplain) {
 	user := MongoConnect("HelpdeskData").Collection("data_complain")
 	filter := bson.M{"status": status}
@@ -45,23 +55,33 @@ func GetDataCompFromStatus(status string) (data DataComplain) {
 	return data
 }
 
-func GetDataAllbyStats(stats string) (data *DataComplain) {
+func GetDataAllbyStats(stats string) (data DataComplain) {
 	user := MongoConnect("HelpdeskData").Collection("data_complain")
 	filter := bson.M{"status": stats}
-	//findOptions := options.Find()
 	err, _ := user.Find(context.TODO(), filter)
 	if err != nil {
-		fmt.Printf("GetALLData : %v\n", err)
+		fmt.Println("GetALLData :", err)
 	}
 	return data
 }
 
-//func GetDataUserFromPhone(phone string) (data DataComplain) {
-//	user := MongoConnect("HelpdeskData").Collection("data_complain")
-//	filter := bson.M{"biodata": bson.M{"handphone": phone}}
-//	err := user.FindOne(context.TODO(), filter).Decode(&data)
-//	if err != nil {
-//		fmt.Printf("getDataCompFromPhoneNumber: %v\n", err)
-//	}
-//	return data
-//}
+func GetDataHelperFromPhone(phone string) (data Helper) {
+	user := MongoConnect("HelpdeskData").Collection("helperdata")
+	filter := bson.M{"handphone": phone}
+	err := user.FindOne(context.TODO(), filter).Decode(&data)
+	if err != nil {
+		fmt.Printf("getDataCompFromPhoneNumber: %v\n", err)
+	}
+	return data
+}
+
+func DeleteDataHelper(phone string) (data Helper) {
+	user := MongoConnect("HelpdeskData").Collection("helperdata")
+	filter := bson.M{"handphone": phone}
+	err, _ := user.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		fmt.Printf("DeleteDataHelper : %v\n", err)
+	}
+	fmt.Println("Succes Delete data")
+	return data
+}

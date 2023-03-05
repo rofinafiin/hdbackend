@@ -17,3 +17,12 @@ type User struct {
 	Email     string             `bson:"email,omitempty" json:"email,omitempty"`
 	Handphone string             `bson:"handphone,omitempty" json:"handphone,omitempty"`
 }
+
+type Helper struct {
+	ID        primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	Helpid    string             `bson:"helpid,omitempty" json:"helpid,omitempty"`
+	Username  string             `bson:"username,omitempty" json:"username,omitempty"`
+	Nama      string             `bson:"nama,omitempty" json:"nama,omitempty"`
+	Email     string             `bson:"email,omitempty" json:"email,omitempty"`
+	Handphone string             `bson:"handphone,omitempty" json:"handphone,omitempty"`
+}
