@@ -2,8 +2,20 @@ package hdbackend
 
 import (
 	"fmt"
+	"os"
 	"testing"
+
+	"github.com/aiteung/atdb"
 )
+
+var MongoString string = os.Getenv("MONGOSTRING")
+
+var MongoInfo = atdb.DBInfo{
+	DBString: MongoString,
+	DBName:   "HelpdeskData",
+}
+
+var MongoConn = atdb.MongoConnect(MongoInfo)
 
 func TestInsertData(t *testing.T) {
 	sistem := "ITeung"
@@ -13,26 +25,26 @@ func TestInsertData(t *testing.T) {
 		Email:     "rofinafiisr@gmail.com",
 		Handphone: "6285156007137",
 	}
-	hasil := InsertDataComp(sistem, status, bio)
+	hasil := InsertDataComp(MongoConn, sistem, status, bio)
 	fmt.Println(hasil)
 
 }
 
 func TestGetDataCompFromStatus(t *testing.T) {
 	stats := "Aktif"
-	biodata := GetDataCompFromStatus(stats)
+	biodata := GetDataCompFromStatus(stats, MongoConn, "data_complain")
 	fmt.Println(biodata)
 }
 
 func TestGetDataHelperFromPhone(t *testing.T) {
 	hp := "085156007137"
-	hasil := GetDataHelperFromPhone(hp)
+	hasil := GetDataHelperFromPhone(hp, MongoConn, "helperdata")
 	fmt.Println(hasil)
 }
 
 func TestGetDataAllbyStats(t *testing.T) {
 	stats := "Aktif"
-	data := GetDataAllbyStats(stats)
+	data := GetDataAllbyStats(stats, MongoConn, "data_complain")
 	fmt.Println(data)
 }
 
@@ -42,7 +54,7 @@ func TestInsertDataHelper(t *testing.T) {
 	nama := "Rofi Nafiis"
 	email := "rofinafiisr@ulbi.ac.id"
 	handphone := "085156007137"
-	hasil := InsertDataHelper(helpid, username, nama, email, handphone)
+	hasil := InsertDataHelper(helpid, username, nama, email, handphone, MongoConn, "helperdata")
 	fmt.Println(hasil)
 
 }
