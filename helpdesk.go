@@ -1,12 +1,13 @@
-package HelpdeskData
+package hdbackend
 
 import (
 	"context"
 	"fmt"
+	"os"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"os"
 )
 
 var MongoString string = os.Getenv("MONGOSTRING")

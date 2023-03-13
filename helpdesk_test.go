@@ -1,4 +1,4 @@
-package HelpdeskData
+package hdbackend
 
 import (
 	"fmt"
