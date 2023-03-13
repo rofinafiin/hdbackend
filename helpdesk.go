@@ -47,11 +47,15 @@ func GetDataCompFromStatus(status string, db *mongo.Database, col string) (data 
 func GetDataAllbyStats(stats string, db *mongo.Database, col string) (data []DataComplain) {
 	user := db.Collection(col)
 	filter := bson.M{"status": stats}
-	err, _ := user.Find(context.TODO(), filter)
+	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetALLData :", err)
 	}
-	return data
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
 
 func GetDataHelperFromPhone(phone string, db *mongo.Database, col string) (data Helper) {
