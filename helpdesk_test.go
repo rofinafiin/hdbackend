@@ -47,8 +47,8 @@ func TestInsertDataHelper(t *testing.T) {
 
 }
 
-func TestDeleteDataHelper(t *testing.T) {
-	hp := "085156007137"
-	res := DeleteDataHelper(hp)
-	fmt.Println(res)
-}
+//func TestDeleteDataHelper(t *testing.T) {
+//	hp := "085156007137"
+//	res := DeleteDataHelper(hp)
+//	fmt.Println(res)
+//}

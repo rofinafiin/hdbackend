@@ -55,7 +55,7 @@ func GetDataCompFromStatus(status string) (data DataComplain) {
 	return data
 }
 
-func GetDataAllbyStats(stats string) (data DataComplain) {
+func GetDataAllbyStats(stats string) (data []DataComplain) {
 	user := MongoConnect("HelpdeskData").Collection("data_complain")
 	filter := bson.M{"status": stats}
 	err, _ := user.Find(context.TODO(), filter)
