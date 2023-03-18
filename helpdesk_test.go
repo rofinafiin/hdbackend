@@ -42,6 +42,12 @@ func TestGetDataHelperFromPhone(t *testing.T) {
 	fmt.Println(hasil)
 }
 
+func TestGetDataCompFromHandphone(t *testing.T) {
+	hp := "085156007137"
+	hasil := GetDataCompFromHandphone(hp, MongoConn, "data_complain")
+	fmt.Println(hasil)
+}
+
 func TestGetDataAllbyStats(t *testing.T) {
 	stats := "Aktif"
 	data := GetDataAllbyStats(stats, MongoConn, "data_complain")
@@ -59,8 +65,8 @@ func TestInsertDataHelper(t *testing.T) {
 
 }
 
-//func TestDeleteDataHelper(t *testing.T) {
-//	hp := "085156007137"
-//	res := DeleteDataHelper(hp)
-//	fmt.Println(res)
-//}
+func TestDeleteDataHelper(t *testing.T) {
+	hp := "085156007137"
+	res := DeleteDataHelper(hp, MongoConn, "helperdata")
+	fmt.Println(res)
+}

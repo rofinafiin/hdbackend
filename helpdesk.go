@@ -78,3 +78,14 @@ func DeleteDataHelper(phone string, db *mongo.Database, col string) (data Helper
 	fmt.Println("Succes Delete data")
 	return data
 }
+
+func GetDataCompFromHandphone(phone string, db *mongo.Database, col string) (data DataComplain) {
+	user := db.Collection(col)
+	filter := bson.M{"user.handphone": phone}
+	err := user.FindOne(context.TODO(), filter).Decode(&data)
+	if err != nil {
+		fmt.Printf("getKaryawanFromNama: %v\n", err)
+	}
+	return data
+
+}
