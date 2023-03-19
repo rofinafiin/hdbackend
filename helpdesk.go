@@ -89,7 +89,7 @@ func GetDataCompFromHandphone(phone string, db *mongo.Database, col string) (dat
 	return data
 }
 
-func GetDataJumlah(tahun int, db *mongo.Database, col string) (data []JumlahComplain) {
+func GetDataJumlah(tahun string, db *mongo.Database, col string) (data []JumlahComplain) {
 	user := db.Collection(col)
 	filter := bson.M{"tahun": tahun}
 	cursor, err := user.Find(context.TODO(), filter)
