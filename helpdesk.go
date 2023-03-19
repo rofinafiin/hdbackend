@@ -103,7 +103,7 @@ func GetDataJumlah(tahun int, db *mongo.Database, col string) (data []JumlahComp
 	return
 }
 
-func InsertJumlahComplain(db *mongo.Database, bulan string, tahun int, jumlah int) (InsertedID interface{}) {
+func InsertJumlahComplain(db *mongo.Database, bulan string, tahun string, jumlah string) (InsertedID interface{}) {
 	var jumcomp JumlahComplain
 	jumcomp.Bulan = bulan
 	jumcomp.Tahun = tahun
