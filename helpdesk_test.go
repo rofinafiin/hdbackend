@@ -72,15 +72,15 @@ var MongoConn = atdb.MongoConnect(MongoInfo)
 //}
 
 func TestInsertJumlahComplain(t *testing.T) {
-	bulan := "April"
-	tahun := 2023
-	jumlah := 10
+	bulan := "Maret"
+	tahun := "2023"
+	jumlah := "20"
 	result := InsertJumlahComplain(MongoConn, bulan, tahun, jumlah)
 	fmt.Println(result)
 }
 
 func TestGetDataJumlah(t *testing.T) {
-	tahun := 2023
+	tahun := "2023"
 	hasil := GetDataJumlah(tahun, MongoConn, "jumlah_complain")
 	fmt.Println(hasil)
 }
