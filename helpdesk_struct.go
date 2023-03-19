@@ -26,3 +26,10 @@ type Helper struct {
 	Email     string             `bson:"email,omitempty" json:"email,omitempty"`
 	Handphone string             `bson:"handphone,omitempty" json:"handphone,omitempty"`
 }
+
+type JumlahComplain struct {
+	ID     primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	Tahun  int                `bson:"tahun,omitempty" json:"jumlah,omitempty"`
+	Bulan  string             `bson:"bulan,omitempty" json:"bulan,omitempty"`
+	Jumlah int                `bson:"jumlah,omitempty" json:"jumlah,omitempty"`
+}
