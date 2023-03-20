@@ -103,6 +103,10 @@ func GetDataJumlah(tahun string, db *mongo.Database, col string) (data []JumlahC
 	return
 }
 
-func InsertJumlahComplain(db *mongo.Database, jumcomp JumlahComplain) (InsertedID interface{}) {
+func InsertJumlahComplain(db *mongo.Database, bulan string, tahun string, jumlah string) (InsertedID interface{}) {
+	var jumcomp JumlahComplain
+	jumcomp.Bulan = bulan
+	jumcomp.Tahun = tahun
+	jumcomp.Jumlah = jumlah
 	return InsertOneDoc(db, "jumlah_complain", jumcomp)
 }
