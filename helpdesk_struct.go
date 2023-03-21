@@ -28,7 +28,7 @@ type Helper struct {
 }
 
 type JumlahComplain struct {
-	Tahun  string `bson:"tahun,omitempty" json:"jumlah,omitempty"`
+	Tahun  string `bson:"tahun,omitempty" json:"tahun,omitempty"`
 	Bulan  string `bson:"bulan,omitempty" json:"bulan,omitempty"`
 	Jumlah string `bson:"jumlah,omitempty" json:"jumlah,omitempty"`
 }
