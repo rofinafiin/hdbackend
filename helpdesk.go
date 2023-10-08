@@ -24,6 +24,13 @@ func InsertDataComp(db *mongo.Database, sistem string, status string, bio User) 
 	return InsertOneDoc(db, "data_complain", datacomp)
 }
 
+func InsertCritics(db *mongo.Database, name, value string) (InsertedID interface{}) {
+	var crtc Critics
+	crtc.Name = name
+	crtc.CriticVal = value
+	return InsertOneDoc(db, "critics", crtc)
+}
+
 func InsertDataHelper(helper string, username string, nama string, email string, handphone string, db *mongo.Database, col string) (InsertedID interface{}) {
 	help := new(Helper)
 	help.Helpid = helper

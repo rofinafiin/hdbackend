@@ -2,10 +2,9 @@ package hdbackend
 
 import (
 	"fmt"
+	"github.com/aiteung/atdb"
 	"os"
 	"testing"
-
-	"github.com/aiteung/atdb"
 )
 
 var MongoString string = os.Getenv("MONGOSTRING")
@@ -77,8 +76,15 @@ var MongoConn = atdb.MongoConnect(MongoInfo)
 //	fmt.Println(result)
 //}
 
-func TestGetDataJumlah(t *testing.T) {
-	tahun := "2023"
-	hasil := GetDataJumlah(tahun, MongoConn, "jumlah_complain")
+//func TestGetDataJumlah(t *testing.T) {
+//	tahun := "2023"
+//	hasil := GetDataJumlah(tahun, MongoConn, "jumlah_complain")
+//	fmt.Println(hasil)
+//}
+
+func TestInsertCritics(t *testing.T) {
+	name := "ropigantengbanget"
+	value := "bagus banget"
+	hasil := InsertCritics(MongoConn, name, value)
 	fmt.Println(hasil)
 }

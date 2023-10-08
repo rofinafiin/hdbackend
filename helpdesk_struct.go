@@ -32,3 +32,8 @@ type JumlahComplain struct {
 	Bulan  string `bson:"bulan,omitempty" json:"bulan,omitempty"`
 	Jumlah string `bson:"jumlah,omitempty" json:"jumlah,omitempty"`
 }
+
+type Critics struct {
+	Name      string `bson:"name" json:"name"`
+	CriticVal string `bson:"critics" json:"critics"`
+}
